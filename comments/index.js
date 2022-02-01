@@ -29,10 +29,12 @@ app.post('/posts/:id/comments', async (req, res) => {
 
   comments.push(comment);
 
-  await axios.post('http://localhost:4005/events', {
-    type: 'CommentCreated',
-    data: comment,
-  });
+  await axios
+    .post('http://localhost:4005/events', {
+      type: 'CommentCreated',
+      data: comment,
+    })
+    .catch(() => {});
 
   res.status(201).json(comment);
 });
@@ -44,10 +46,12 @@ app.post('/events', async (req, res) => {
     const comment = comments.find((comment) => comment.id === data.id);
     comment.status = data.status;
 
-    await axios.post('http://localhost:4005/events', {
-      type: 'CommentUpdated',
-      data: comment,
-    });
+    await axios
+      .post('http://localhost:4005/events', {
+        type: 'CommentUpdated',
+        data: comment,
+      })
+      .catch(() => {});
   }
 
   res.status(204).send();

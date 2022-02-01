@@ -7,17 +7,19 @@ const PostCreate = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    await axios.post(
-      'http://localhost:4000/posts',
-      {
-        title,
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json',
+    await axios
+      .post(
+        'http://localhost:4000/posts',
+        {
+          title,
         },
-      }
-    );
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      )
+      .catch(() => {});
 
     setTitle('');
   };
