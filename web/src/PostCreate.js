@@ -9,7 +9,7 @@ const PostCreate = () => {
 
     await axios
       .post(
-        'http://localhost:4000/posts',
+        'http://posts.com/posts',
         {
           title,
         },
